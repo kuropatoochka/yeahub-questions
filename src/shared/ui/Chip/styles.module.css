@@ -1,0 +1,12 @@
+.button {
+    height: 42px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-black-200);
+    border-radius: 12px;
+}
+
+.button:hover, .active {
+    border-color: var(--color-purple-700);
+}

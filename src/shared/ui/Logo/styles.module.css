@@ -1,0 +1,10 @@
+.logo {
+    width: 172px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo__icon {
+    width: 33px;
+}
