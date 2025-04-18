@@ -1,19 +1,26 @@
-import styles from './styles.module.css'
+import { JSX, ReactNode } from "react";
+
+import { Flex } from "@/shared";
+
+import styles from './styles.module.css';
 
 type Props = {
   active: boolean,
-  label: string,
+  children: ReactNode,
   onClick: () => void,
+  prefix?: JSX.Element,
 }
 
-const Chip = ({active, label, onClick}: Props) => {
+const Chip = ( { active, children, onClick, prefix }: Props ) => {
   return (
-    <button
+    <Flex
+      align="center" gap="8"
       className={`${styles.button} ${active && styles.active}`}
       onClick={onClick}
     >
-      {label}
-    </button>
+      {prefix}
+      {children}
+    </Flex>
   );
 };
 

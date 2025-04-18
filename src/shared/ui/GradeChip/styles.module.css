@@ -1,0 +1,11 @@
+.param {
+    padding: 6px 10px;
+    border-radius: 8px;
+    background-color: var(--color-black-10);
+}
+
+.value {
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: var(--color-purple-700);
+}

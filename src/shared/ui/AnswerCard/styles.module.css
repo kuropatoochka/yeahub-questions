@@ -1,0 +1,12 @@
+.item {
+    position: relative;
+    flex-direction: column-reverse !important;
+}
+
+.icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon.accordion-opened {
+    transform: rotate(-180deg);
+}

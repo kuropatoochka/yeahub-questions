@@ -1,13 +1,18 @@
-import styles from './styles.module.css'
-import { Magnifier } from '@gravity-ui/icons'
-import * as React from "react"
+import * as React from "react";
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
+import { Flex } from "@/shared";
 
-const Input = ({...props}: Props) => {
+import { Magnifier } from '@gravity-ui/icons';
+
+import styles from './styles.module.css';
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+}
+
+const Input = ( { ...props }: InputProps ) => {
 
   return (
-    <div className={styles.input}>
+    <Flex gap="8" className={styles.input}>
       <span className={styles.input__icon}>
         <Magnifier/>
       </span>
@@ -15,7 +20,7 @@ const Input = ({...props}: Props) => {
         className={styles.input__field}
         {...props}
       />
-    </div>
+    </Flex>
   )
 }
 

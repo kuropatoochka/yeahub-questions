@@ -1,0 +1,4 @@
+.questions__header {
+    padding: 0 10px 16px 0;
+    border-bottom: 0.5px solid var(--color-black-50);
+}

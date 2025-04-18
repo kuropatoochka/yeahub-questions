@@ -1,0 +1,44 @@
+.item {
+    padding: 24px 0 16px;
+    border-bottom: 1px solid var(--color-black-100);
+}
+
+.button {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.title {
+    position: relative;
+    padding-left: 16px;
+    text-align: initial;
+}
+
+.title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-purple-700);
+}
+
+.icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon.accordion-opened {
+    transform: rotate(-180deg);
+}
+
+.article {
+    padding: 24px 0 0 24px;
+}
+
+.link {
+    align-self: flex-end;
+}

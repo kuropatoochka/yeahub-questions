@@ -1,0 +1,55 @@
+.body2-accent {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.body2-strong {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.body3 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.body3-accent {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 130%;
+}
+
+.body5-accent {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.body6 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.black-900 {
+    color: var(--color-black-900);
+}
+
+.black-800 {
+    color: var(--color-black-800);
+}
+
+.black-700 {
+    color: var(--color-black-700);
+}
+
+.purple-700 {
+    color: var(--color-purple-700);
+}
+
+.white-900 {
+    color: var(--color-white-900);
+}

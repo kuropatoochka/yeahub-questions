@@ -1,7 +1,15 @@
 .header {
-    padding: 8px 112px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
     background-color: var(--color-white-900);
+}
+
+.container {
+    max-width: 1216px;
+    margin: 0 auto;
+    padding: 16px 30px;
+}
+
+.active {
+    color: var(--color-purple-800);
+    background-color: var(--color-black-25);
 }
