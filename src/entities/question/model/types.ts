@@ -1,4 +1,4 @@
-import { ISkills } from "@/entities/filter/model/types.ts";
+import { ISkills } from "@/entities/skill/model/types.ts";
 
 type AuthorType = {
   id: string,
@@ -17,4 +17,11 @@ export interface IQuestion {
   questionSkills: ISkills[];
   description: string;
   imageSrc: string | null;
+}
+
+export interface QuestionsResponse {
+  data: IQuestion[];
+  total: number;
+  page: number;
+  limit: number;
 }

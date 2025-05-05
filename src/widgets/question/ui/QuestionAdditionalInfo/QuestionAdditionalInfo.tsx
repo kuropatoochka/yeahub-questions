@@ -2,7 +2,7 @@ import { QuestionAuthor, QuestionGradeList, QuestionHashtagList } from "@/entiti
 import { FilterList } from "@/entities/filter";
 import { Flex, SectionWrapper, Text } from "@/shared";
 
-import { ISkills } from "@/entities/filter/model/types.ts";
+import { ISkills } from "@/entities/skill/model/types.ts";
 
 import styles from "./styles.module.css";
 
@@ -23,19 +23,16 @@ const QuestionAdditionalInfo = ( { rate, complexity, hashtags, author, skills }:
           <Text variant="body3-accent" color="black-700">{"Уровень:"}</Text>
           <QuestionGradeList rate={rate} complexity={complexity} className={styles.list}/>
         </Flex>
-
         <FilterList
           title="Навыки:"
           items={skills}
           isDisplayOnly={true}
         />
-
         <Flex direction="column" gap="8">
           <Text variant="body3-accent" color="black-700">{"Ключевые слова:"}</Text>
           <QuestionHashtagList hashtags={hashtags}/>
         </Flex>
       </SectionWrapper>
-
       <QuestionAuthor author={author}/>
     </Flex>
   );

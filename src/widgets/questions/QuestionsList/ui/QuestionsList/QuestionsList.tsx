@@ -1,23 +1,35 @@
-import React, { useMemo } from "react";
+import { useEffect } from "react";
+
+import { useSearchParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/app/appStore.ts";
+
+import { EmptyList, QuestionsItem } from "@/widgets/questions/QuestionsList";
+import { useGetAllQuestionsQuery } from "@/entities/question/api/questionApi.ts";
+import { setFilters } from "@/entities/filter/slice/filterSlice.ts";
 
 import { Pagination } from "@/shared";
 
-import { EmptyList, QuestionsItem } from "@/widgets/questions/QuestionsList";
 import { usePagination } from "@/shared/libs/utils/hooks/usePagination.ts";
-
-import { IQuestion } from "@/entities/question/model/types.ts";
 
 import styles from "./styles.module.css";
 
-type Props = {
-  questions: IQuestion[],
-  total: number,
-  page: number,
-}
+import { parseSearchParamsToFilters } from "@/shared/libs/utils/helpers/parseSearchParamsToFilters.ts";
+import { convertFiltersToSearchParams } from "@/shared/libs/utils/helpers/convertFiltersToSearchParams.ts";
 
-const QuestionsList = React.memo(( { questions, total, page }: Props ) => {
+const QuestionsList = () => {
+  const dispatch = useAppDispatch()
+  const [ searchParams, setSearchParams ] = useSearchParams()
+  const filters = useAppSelector(state => state.filters)
 
-  const totalPages = useMemo(() => Math.ceil((total || 0) / 10), [ total ])
+  const { data: questionsResponse } = useGetAllQuestionsQuery(filters)
+
+  const {
+    data: questions = [],
+    page = 1,
+    total = 0
+  } = questionsResponse ?? {};
+
+  const totalPages = Math.ceil((total || 0) / 10)
 
   const {
     handlePageClick,
@@ -25,18 +37,27 @@ const QuestionsList = React.memo(( { questions, total, page }: Props ) => {
     handleNextPageClick
   } = usePagination(page, totalPages)
 
+  useEffect(() => {
+    const parsed = parseSearchParamsToFilters(searchParams)
+    dispatch(setFilters(parsed))
+  }, [])
+
+  useEffect(() => {
+    const newParams = convertFiltersToSearchParams(filters)
+    setSearchParams(newParams)
+  }, [ filters ])
+
   if (questions.length === 0) {
-    return (
-      <EmptyList/>
-    )
+    return <EmptyList/>
   }
+
+  console.log("list render")
 
   return (
     <>
       {questions.map(( question ) =>
         <QuestionsItem key={question.id} question={question}/>
       )}
-
       <Pagination
         className={styles.pagination__wrapper}
         totalPages={totalPages}
@@ -47,6 +68,6 @@ const QuestionsList = React.memo(( { questions, total, page }: Props ) => {
       />
     </>
   );
-})
+}
 
 export default QuestionsList;

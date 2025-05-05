@@ -1,5 +1,5 @@
-import { QuestionHeader } from "@/entities/question";
-import { AnswerCard, Flex, SectionWrapper } from "@/shared";
+import { QuestionCard, QuestionHeader } from "@/entities/question";
+import { Flex, SectionWrapper } from "@/shared";
 
 import styles from "./styles.module.css";
 
@@ -17,13 +17,11 @@ const QuestionContent = ( { image, title, description, shortAnswer, longAnswer }
       <SectionWrapper className={styles.question__section}>
         <QuestionHeader image={image} title={title} description={description}/>
       </SectionWrapper>
-
       <SectionWrapper className={styles.question__section}>
-        <AnswerCard answer={shortAnswer}/>
+        <QuestionCard answer={shortAnswer}/>
       </SectionWrapper>
-
       <SectionWrapper className={styles.question__section}>
-        <AnswerCard answer={longAnswer} isExpandable={true}/>
+        <QuestionCard answer={longAnswer} isExpandable={true}/>
       </SectionWrapper>
     </Flex>
   );

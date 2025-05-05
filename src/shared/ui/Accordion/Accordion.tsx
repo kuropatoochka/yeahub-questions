@@ -1,26 +1,25 @@
-import { JSX, ReactNode, useRef, useState } from "react";
+import { JSX, ReactNode, useRef } from "react";
 
 import { Flex } from "@/shared";
+import { useToggle } from "@/shared/libs/utils/hooks/useToggle.ts";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 type AccordionProps = {
-  toggleSlot: ( args: { isOpen: boolean, toggleOpen: () => void } ) => JSX.Element,
+  toggleSlot: ( args: { isOpen: boolean, toggle: () => void } ) => JSX.Element,
   minHeight?: number,
   className?: string,
   children: ReactNode,
 }
 
 const Accordion = ( { toggleSlot, minHeight = 0, className, children }: AccordionProps ) => {
-  const [ isOpen, setIsOpen ] = useState<boolean>(false)
   const contentRef = useRef<HTMLDivElement | null>(null)
 
-  const toggleOpen = () => setIsOpen(prev => !prev)
+  const [ isOpen, toggle ] = useToggle()
 
   return (
     <Flex direction="column" className={`${className}`}>
-      {toggleSlot({ isOpen, toggleOpen })}
-
+      {toggleSlot({ isOpen, toggle })}
       <Flex
         ref={contentRef}
         className={styles.content__wrapper}

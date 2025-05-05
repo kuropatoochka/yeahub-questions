@@ -17,7 +17,6 @@ const QuestionHeader = ( { image, title, description }: Props ) => {
         src={image ? image : (ImgDefault as string)}
         alt="question"
       />
-
       <Flex direction="column" gap="8">
         <Text variant='body6' color='black-800'>{title}</Text>
         <Text variant='body3-accent' color='black-700'>{description}</Text>

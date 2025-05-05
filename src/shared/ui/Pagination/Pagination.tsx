@@ -37,7 +37,6 @@ const Pagination = ( {
         disabled={isPrevDisabled}
         suffix={<Icon src={IconArrowPagination as string} size={28}/>}
       />
-
       {startPage > 1 && (
         <>
           <Button
@@ -47,11 +46,9 @@ const Pagination = ( {
           >
             <Text variant='body2-accent' color={1 === page ? 'white-900' : 'black-700'}>1</Text>
           </Button>
-
           <Icon src={IconDots as string} size={14}/>
         </>
       )}
-
       {arrayOfPages.map(( value ) =>
         value ? (
           <Button
@@ -64,11 +61,9 @@ const Pagination = ( {
           </Button>
         ) : null
       )}
-
       {endPage < totalPages && (
         <>
           <Icon src={IconDots as string} size={14}/>
-
           <Button
             variant="button"
             onClick={() => onChangePage(totalPages)}
@@ -78,7 +73,6 @@ const Pagination = ( {
           </Button>
         </>
       )}
-
       <Button
         variant="button"
         onClick={onNextPageClick}

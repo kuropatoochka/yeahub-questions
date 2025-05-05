@@ -1,15 +1,18 @@
-import * as React from "react";
+import { ChangeEvent } from "react";
 
 import { Flex } from "@/shared";
 
-import { Magnifier } from '@gravity-ui/icons';
+import { Magnifier } from "@gravity-ui/icons";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+type InputProps = {
+  onChange: ( newValue: string ) => void,
+  value: string
 }
 
-const Input = ( { ...props }: InputProps ) => {
+const Input = ( { onChange, value }: InputProps ) => {
+  const onHandleChange = ( e: ChangeEvent<HTMLInputElement> ) => onChange(e.target.value)
 
   return (
     <Flex gap="8" className={styles.input}>
@@ -18,7 +21,8 @@ const Input = ( { ...props }: InputProps ) => {
       </span>
       <input
         className={styles.input__field}
-        {...props}
+        value={value}
+        onChange={onHandleChange}
       />
     </Flex>
   )

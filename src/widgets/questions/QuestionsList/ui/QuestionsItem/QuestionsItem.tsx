@@ -24,11 +24,11 @@ const QuestionsItem = ( { question }: Props ) => {
   return (
     <Accordion
       className={styles.item}
-      toggleSlot={( { isOpen, toggleOpen } ): JSX.Element => (
+      toggleSlot={( { isOpen, toggle } ): JSX.Element => (
         <Button
           variant='button'
           className={styles.button}
-          onClick={toggleOpen}
+          onClick={toggle}
           suffix={<Icon
             src={IconChevron as string}
             size={24}
@@ -39,12 +39,9 @@ const QuestionsItem = ( { question }: Props ) => {
         </Button>
       )}
     >
-
       <Flex direction="column" gap="24" maxWidth className={styles.article}>
         <QuestionGradeList rate={rate} complexity={complexity}/>
-
         <TextHTML html={shortAnswer}/>
-
         <Button
           variant='link'
           size='large'
@@ -55,7 +52,6 @@ const QuestionsItem = ( { question }: Props ) => {
           Подробнее
         </Button>
       </Flex>
-
     </Accordion>
   )
 }

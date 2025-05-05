@@ -8,7 +8,6 @@ import Text from "./ui/Text/ui/Text.tsx";
 import TextHTML from "./ui/TextHTML/TextHTML.tsx";
 import Accordion from "./ui/Accordion/Accordion.tsx";
 import Pagination from "./ui/Pagination/Pagination.tsx";
-import AnswerCard from "./ui/AnswerCard/AnswerCard.tsx";
 import { Flex } from "./ui/Flex/Flex.tsx";
 import Button from "./ui/Button/Button.tsx";
 
@@ -23,7 +22,6 @@ export {
   TextHTML,
   Accordion,
   Pagination,
-  AnswerCard,
   Flex,
   Button
 }

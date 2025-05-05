@@ -1,4 +1,4 @@
-import React, { JSX } from "react";
+import * as React from "react";
 
 export type VariantType =
   | 'link'

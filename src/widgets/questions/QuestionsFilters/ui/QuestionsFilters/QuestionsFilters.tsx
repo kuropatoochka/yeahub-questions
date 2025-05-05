@@ -1,35 +1,38 @@
-import { useState } from "react";
+import { useAppSelector } from "@/app/appStore.ts";
 
-import { ComplexitiesList, RatesList, SkillsList, SpecializationsList } from "@/widgets/questions/QuestionsFilters";
-import { ExpandableWrapper } from "@/features/filter";
-import { SearchQuestions } from "@/features/questions";
+import { SpecializationsList } from "@/features/specializations";
+import { SkillsList } from "@/features/skills";
+import { SearchQuestions } from "@/features/question/search";
+import { ComplexitiesList, ExpandableWrapper, RatesList } from "@/features/question/filter";
+
+import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationsApi.ts";
+import { useGetSkillsQuery } from "@/entities/skill/api/skillsApi.ts";
+
 import { SectionWrapper } from "@/shared";
 
 import styles from "./styles.module.css";
 
 const QuestionsFilters = () => {
-  const [ specsLimit, setSpecsLimit ] = useState(5)
-  const [ skillsLimit, setSkillsLimit ] = useState(5)
+  const specialization = useAppSelector(( state ) => state.filters.specialization)
+
+  const { data: specData } = useGetSpecializationsQuery(5)
+
+  const { data: skillData } = useGetSkillsQuery({
+    limit: 5,
+    specializations: specialization,
+  })
 
   return (
     <SectionWrapper className={styles.filters__section}>
       <SearchQuestions/>
-
-      <ExpandableWrapper maxLimit={specsLimit}>
-        {( limit: number ) => (
-          <SpecializationsList limit={limit} onTotalChange={( total ) => setSpecsLimit(total)}/>
-        )}
+      <ExpandableWrapper maxLimit={specData?.total || 5}>
+        {( limit ) => <SpecializationsList limit={limit}/>}
       </ExpandableWrapper>
-
-      <ExpandableWrapper maxLimit={skillsLimit}>
-        {( limit: number ) => (
-          <SkillsList limit={limit} onTotalChange={( total ) => setSkillsLimit(total)}/>
-        )}
+      <ExpandableWrapper maxLimit={skillData?.total || 5}>
+        {( limit ) => <SkillsList limit={limit}/>}
       </ExpandableWrapper>
-
       <ComplexitiesList/>
       <RatesList/>
-
     </SectionWrapper>
   );
 };
