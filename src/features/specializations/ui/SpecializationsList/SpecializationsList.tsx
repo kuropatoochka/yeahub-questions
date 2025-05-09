@@ -4,6 +4,7 @@ import { FilterList } from "@/entities/filter";
 
 import { setSpecialization } from "@/entities/filter/slice/filterSlice.ts";
 import { useGetSpecializationsQuery } from "@/entities/specialization/api/specializationsApi.ts";
+import { specialization } from "@/entities/question/model/selectors.ts";
 
 type Props = {
   limit: number,
@@ -11,8 +12,7 @@ type Props = {
 
 const SpecializationsList = ( { limit }: Props ) => {
   const dispatch = useAppDispatch()
-
-  const specialization = useAppSelector(( state ) => state.filters.specialization)
+  const specializationList = useAppSelector(specialization)
 
   const { data: specializationResponse } = useGetSpecializationsQuery(limit)
 
@@ -22,7 +22,7 @@ const SpecializationsList = ( { limit }: Props ) => {
     <FilterList
       title="Специализация"
       items={specializationResponse.data}
-      selectedOption={specialization}
+      selectedOption={specializationList}
       onClick={( specialization ) => dispatch(setSpecialization(specialization))}
     />
   )

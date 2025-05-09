@@ -1,21 +1,23 @@
-import { COMPLEXITIES } from "@/entities/filter/constants/complexities.ts";
-import { setComplexity } from "@/entities/filter/slice/filterSlice.ts";
-import { FilterList } from "@/entities/filter";
 import { useAppDispatch, useAppSelector } from "@/app/appStore.ts";
 
-const ComplexitiesList = () => {
-  const dispatch = useAppDispatch()
+import { FilterList } from "@/entities/filter";
 
-  const complexity = useAppSelector(( state ) => state.filters.complexity)
+import { COMPLEXITIES } from "@/entities/filter/constants/complexities.ts";
+import { setComplexity } from "@/entities/filter/slice/filterSlice.ts";
+import { complexity } from "@/entities/question/model/selectors.ts";
+
+const SelectComplexity = () => {
+  const dispatch = useAppDispatch()
+  const complexityList = useAppSelector(complexity)
 
   return (
     <FilterList
       title="Уровень сложности"
       items={COMPLEXITIES}
-      selectedOption={complexity}
+      selectedOption={complexityList}
       onClick={( complexity ) => dispatch(setComplexity(complexity))}
     />
   );
 };
 
-export default ComplexitiesList;
+export default SelectComplexity;

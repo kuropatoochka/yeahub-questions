@@ -1,18 +1,26 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import { Layout } from "./layout/Layout.tsx";
-import { QuestionPage, QuestionsPage } from "@/pages";
+import { createBrowserRouter, Navigate, RouteObject } from "react-router-dom";
+import { Layout } from "@/app/layout/Layout.tsx";
 
-export const router = createBrowserRouter([
+import { QuestionPageLazy } from "@/pages/ui/QuestionPage/ui/QuestionPage.lazy.tsx";
+import { QuestionsPageLazy } from "@/pages/ui/QuestionsPage/ui/QuestionsPage/QuestionsPage.lazy.tsx";
+
+const routes: RouteObject[] = [
   {
     path: "/",
-    element: <Navigate to="/questions" replace/>
+    element: <Navigate to={`/questions`} replace/>
   },
   {
-    path: "questions",
+    path: "/questions",
     element: <Layout/>,
     children: [
-      { index: true, element: <QuestionsPage/> },
-      { path: "/questions/:id", element: <QuestionPage/> }
+      { index: true, element: <QuestionsPageLazy/> },
+      { path: "/questions/:id", element: <QuestionPageLazy/> }
     ]
+  },
+  {
+    path: '*',
+    element: <Navigate to={`/questions`} replace/>
   }
-])
+]
+
+export const router = createBrowserRouter(routes)

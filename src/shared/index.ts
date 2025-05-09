@@ -10,6 +10,7 @@ import Accordion from "./ui/Accordion/Accordion.tsx";
 import Pagination from "./ui/Pagination/Pagination.tsx";
 import { Flex } from "./ui/Flex/Flex.tsx";
 import Button from "./ui/Button/Button.tsx";
+import ExpandableWrapper from "./ui/ExpandableWrapper/ExpandableWrapper.tsx";
 
 export {
   Logo,
@@ -23,5 +24,6 @@ export {
   Accordion,
   Pagination,
   Flex,
-  Button
+  Button,
+  ExpandableWrapper
 }

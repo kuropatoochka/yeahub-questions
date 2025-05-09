@@ -10,13 +10,13 @@ type Props<T extends string | number> = {
   isDisplayOnly?: boolean,
 }
 
-const FilterList = React.memo(<T extends string | number>( {
-                                                             title,
-                                                             items,
-                                                             onClick,
-                                                             selectedOption,
-                                                             isDisplayOnly
-                                                           }: Props<T> ) => {
+const FilterList = <T extends string | number>( {
+                                                  title,
+                                                  items,
+                                                  onClick,
+                                                  selectedOption,
+                                                  isDisplayOnly
+                                                }: Props<T> ) => {
 
   return (
     <Flex direction="column" gap="8">
@@ -37,6 +37,6 @@ const FilterList = React.memo(<T extends string | number>( {
       </Flex>
     </Flex>
   )
-})
+}
 
 export default FilterList

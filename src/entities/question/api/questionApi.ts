@@ -1,6 +1,5 @@
 import baseApi from "@/shared/api/baseApi.ts";
-import { IQuestion, QuestionsResponse } from "../model/types.ts";
-
+import { IQuestion, QuestionsResponse } from "@/entities/question/model/types.ts";
 import { FiltersState } from "@/entities/filter/model/types.ts";
 import { cleanQueryParams } from "@/entities/filter/helpers/cleanQueryParams.ts";
 
@@ -15,8 +14,7 @@ const questionApi = baseApi.injectEndpoints?.({
             ...filteredParams
           }
         }
-      },
-      providesTags: [ 'AllQuestions' ]
+      }
     }),
     getQuestionById: builder.query<IQuestion, number>({
       query: ( id: number ) => {

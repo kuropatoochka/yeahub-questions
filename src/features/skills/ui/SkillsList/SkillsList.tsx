@@ -4,6 +4,7 @@ import { FilterList } from "@/entities/filter";
 
 import { setSkills } from "@/entities/filter/slice/filterSlice.ts";
 import { useGetSkillsQuery } from "@/entities/skill/api/skillsApi.ts";
+import { skills, specialization } from "@/entities/question/model/selectors.ts";
 
 type Props = {
   limit: number,
@@ -11,13 +12,12 @@ type Props = {
 
 const SkillsList = ( { limit }: Props ) => {
   const dispatch = useAppDispatch()
-
-  const specialization = useAppSelector(( state ) => state.filters.specialization)
-  const skills = useAppSelector(( state ) => state.filters.skills)
+  const specializationList = useAppSelector(specialization)
+  const skillsList = useAppSelector(skills)
 
   const { data: skillsResponse } = useGetSkillsQuery({
     limit,
-    specializations: specialization,
+    specializations: specializationList,
   })
 
   if (!skillsResponse) return null;
@@ -26,7 +26,7 @@ const SkillsList = ( { limit }: Props ) => {
     <FilterList
       title="Навыки"
       items={skillsResponse.data}
-      selectedOption={skills}
+      selectedOption={skillsList}
       onClick={( skills ) => dispatch(setSkills(skills))}
     />
   )

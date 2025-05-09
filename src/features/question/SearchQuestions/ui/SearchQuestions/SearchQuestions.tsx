@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/appStore.ts";
 
-import { setTitle } from "@/entities/filter/slice/filterSlice.ts";
-
 import { Input } from "@/shared";
+
+import { setTitle } from "@/entities/filter/slice/filterSlice.ts";
+import { keywords } from "@/entities/question/model/selectors.ts";
 import { useDebounceCallback } from "@/shared/libs/utils/hooks/useDebounceCallback.ts";
 
 const SearchQuestions = () => {
   const [ value, setValue ] = useState('')
   const dispatch = useAppDispatch()
-
-  const filteredValue = useAppSelector(( state ) => state.filters.title)
+  const title = useAppSelector(keywords)
 
   const debouncedDispatch = useDebounceCallback(( newValue: string ) => {
     dispatch(setTitle(newValue))
@@ -22,7 +22,7 @@ const SearchQuestions = () => {
   }
 
   useEffect(() => {
-    setValue(filteredValue)
+    setValue(title)
   }, [])
 
   return (
