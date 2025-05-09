@@ -1,8 +1,8 @@
 import { createBrowserRouter, Navigate, RouteObject } from "react-router-dom";
 import { Layout } from "@/app/layout/Layout.tsx";
 
-import { QuestionPageLazy } from "@/pages/ui/QuestionPage/ui/QuestionPage.lazy.tsx";
-import { QuestionsPageLazy } from "@/pages/ui/QuestionsPage/ui/QuestionsPage/QuestionsPage.lazy.tsx";
+import { QuestionPageLazy } from "@/pages/QuestionPage/ui/QuestionPage.lazy.tsx";
+import { QuestionsPageLazy } from "@/pages/QuestionsPage/ui/QuestionsPage/QuestionsPage.lazy.tsx";
 
 const routes: RouteObject[] = [
   {
